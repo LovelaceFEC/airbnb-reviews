@@ -40,7 +40,7 @@ class Reviews extends React.Component {
           location += results[i].location;
           value += results[i].value;
         }
-        console.log('Ratings:', cleanliness, communication, check_in, accuracy, location, value);
+
         let totalRating = (cleanliness + communication + check_in + accuracy + location + value) / (6 * results.length);
         this.setState({
           reviews: results,
