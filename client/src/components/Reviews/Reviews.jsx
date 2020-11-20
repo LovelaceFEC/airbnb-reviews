@@ -193,7 +193,7 @@ class Reviews extends React.Component {
   }
 
   render() {
-    let { reviews, totalRating, cleanliness, communication, check_in, accuracy, location, value, showModal } = this.state;
+    let { reviews, showModal } = this.state;
     let i = 0;
     let showOddRow = false;
     let showAllReviewsButton = false;
@@ -236,131 +236,18 @@ class Reviews extends React.Component {
           }
           </div>
         </div>
-        {showModal &&
-          <div className={styles.modalBackground}>
-            <div className={styles.reviewsModal}>
-              <ReviewsModal show={showModal} toggle={this.toggleModal}>
-                <div className={styles.paddingBottom32}>
-                  <span className={styles.reviewsStar}>&#9733;</span>
-                  <span className={styles.reviewsTitle}>{totalRating.toFixed(1)} ({reviews.length} Reviews)</span>
-                </div>
-                <div className={`${styles.ratings} ${styles.row}`}>
-                  <div className={styles.col5}>
-                    <div className={styles.ratingTable}>
-                      <div className={styles.width100}>
-                        <span className={styles.ratingCategory}>Cleanliness</span>
-                      </div>
-                      <div>
-                        <div className={styles.ratingBar}>
-                          <span style={{width: this.getProgressAsPercent(cleanliness) + '%'}}></span>
-                        </div>
-                      </div>
-                      <div><span className={styles.rating}>{cleanliness.toFixed(1)}</span></div>
-                    </div>
-                  </div>
-                  <div className={styles.col1}></div>
-                  <div className={styles.col5}>
-                    <div className={styles.ratingTable}>
-                      <div className={styles.width100}>
-                        <span className={styles.ratingCategory}>Accuracy</span>
-                      </div>
-                      <div>
-                        <div className={styles.ratingBar}>
-                          <span style={{width: this.getProgressAsPercent(accuracy) + '%'}}></span>
-                        </div>
-                      </div>
-                      <div>
-                        <span className={styles.rating}>{accuracy.toFixed(1)}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={styles.col-1}></div>
-                </div>
-                <div className={`${styles.ratings} ${styles.row}`}>
-                  <div className={styles.col5}>
-                    <div className={styles.ratingTable}>
-                      <div className={styles.width100}>
-                        <span className={styles.ratingCategory}>Communication</span>
-                      </div>
-                      <div>
-                        <div className={styles.ratingBar}>
-                          <span style={{width: this.getProgressAsPercent(communication) + '%'}}></span>
-                        </div>
-                      </div>
-                      <div>
-                        <span className={styles.rating}>{communication.toFixed(1)}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={styles.col1}></div>
-                  <div className={styles.col5}>
-                    <div className={styles.ratingTable}>
-                      <div className={styles.width100}>
-                        <span className={styles.ratingCategory}>Location</span>
-                      </div>
-                      <div>
-                        <div className={styles.ratingBar}>
-                          <span style={{width: this.getProgressAsPercent(location) + '%'}}></span>
-                        </div>
-                      </div>
-                      <div>
-                        <span className={styles.rating}>{location.toFixed(1)}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={styles.col1}></div>
-                </div>
-                <div className={`${styles.ratings} ${styles.row} ${styles.paddingBottom32}`}>
-                  <div className={styles.col5}>
-                    <div className={styles.ratingTable}>
-                      <div className={styles.width100}>
-                        <span className={styles.ratingCategory}>Check-in</span>
-                      </div>
-                      <div>
-                        <div className={styles.ratingBar}>
-                          <span style={{width: this.getProgressAsPercent(check_in) + '%'}}></span>
-                        </div>
-                      </div>
-                      <div>
-                        <span className={styles.rating}>{check_in.toFixed(1)}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={styles.col1}></div>
-                  <div className={styles.col5}>
-                    <div className={styles.ratingTable}>
-                      <div className={styles.width100}>
-                        <span className={styles.ratingCategory}>Value</span>
-                      </div>
-                      <div>
-                        <div className={styles.ratingBar}>
-                          <span style={{width: this.getProgressAsPercent(value) + '%'}}></span>
-                        </div>
-                      </div>
-                      <div>
-                        <span className={styles.rating}>{value.toFixed(1)}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={styles.col1}></div>
-                </div>
-                {reviewPairs.map(reviewPair =>
-                  // eslint-disable-next-line react/jsx-key
-                  <div className={`${styles.reviews} ${styles.row} ${styles.paddingBottom32}`}>
-                    <div className={styles.col5}>
-                      <Review review={reviewPair[0]} />
-                    </div>
-                    <div className={styles.col1}></div>
-                    <div className={styles.col5}>
-                      <Review review={reviewPair[1]} />
-                    </div>
-                    <div className={styles.col1}></div>
-                  </div>
-                )}
-              </ReviewsModal>
+        <ReviewsModal show={showModal} toggle={this.toggleModal}>
+          {this.renderHeading()}
+          {this.renderRatings()}
+          {reviews.map(review =>
+            // eslint-disable-next-line react/jsx-key
+            <div className={`${styles.reviews} ${styles.row} ${styles.paddingBottom32}`}>
+              <div className={styles.col12}>
+                <Review review={review} />
+              </div>
             </div>
-          </div>
-        }
+          )}
+        </ReviewsModal>
       </React.Fragment>
     );
   }
