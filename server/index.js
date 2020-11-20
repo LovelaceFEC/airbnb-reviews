@@ -11,7 +11,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/api/reviews/:id', (req, res) => {
-  let listingId = req.params['id'];
   db.find({ listing_id: 1 }, (err, results) => {
     if (err) {
       res.sendStatus(404);
