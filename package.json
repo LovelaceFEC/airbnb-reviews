@@ -5,16 +5,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
+    "build:dev": "webpack --watch",
     "lint": "eslint .",
     "seed": "node database/generateReviewData.js",
-    "start": "nodemon server/index.js",
-    "react-dev": "webpack --watch",
+    "start": "node server/index.js",
+    "start:dev": "nodemon server/index.js",
     "test": "jest"
   },
   "author": "Duy Nguyen",
   "license": "None",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "bootstrap": "^4.5.3",
+    "classnames": "^2.2.6",
     "enzyme": "^3.11.0",
     "express": "^4.15.4",
     "faker": "^5.1.0",
@@ -23,6 +27,7 @@
     "mongoose": "^4.13.21",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-highlighter": "^0.4.3",
     "react-truncate": "^2.4.0"
   },
   "devDependencies": {
@@ -43,7 +48,6 @@
     "nodemon": "^2.0.6",
     "style-loader": "^2.0.0",
     "webpack": "^5.5.1",
-    "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-cli": "^4.2.0"
   }
 }

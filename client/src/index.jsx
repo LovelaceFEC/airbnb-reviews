@@ -1,13 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Reviews from './components/Reviews/Reviews.jsx';
+import App from './App.jsx';
 
-const App = () => {
-  let listingId = Math.floor(Math.random() * 100) + 1;
-
-  return (
-     <Reviews listingId={listingId} />
-  );
-}
-
-ReactDOM.render(<App />, document.getElementById('service3'));
+ReactDOM.render(
+  <App />,
+  document.getElementById('service3')
+);

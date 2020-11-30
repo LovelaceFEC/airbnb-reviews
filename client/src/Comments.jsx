@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import React  from 'react';
 import Truncate from 'react-truncate';
-import styles from './reviews.module.css';
+import Highlight from 'react-highlighter';
+import styles from '../dist/reviews.module.css';
 
 class Comments extends React.Component {
   constructor(...args) {
@@ -31,7 +32,8 @@ class Comments extends React.Component {
   }
 
   render() {
-    let { children, more, lines } = this.props;
+    // eslint-disable-next-line no-unused-vars
+    let { children, more, lines, searchQuery } = this.props;
     let { expanded } = this.state;
 
     return (
@@ -43,7 +45,7 @@ class Comments extends React.Component {
           )}
           onTruncate={this.handleTruncate}
         >
-          {children}
+          {<Highlight matchClass={styles.highlight} search={searchQuery}>{children}</Highlight>}
         </Truncate>
       </div>
     );

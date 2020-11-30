@@ -29,8 +29,5 @@ module.exports = {
         include: /\.module\.css$/
       }
     ]
-  },
-  devServer: {
-    contentBase: DIST_DIR
   }
 };
